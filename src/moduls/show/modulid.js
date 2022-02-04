@@ -62,7 +62,7 @@ async function modulid(e, [close, closeURL]) {
       for (let index = 0; index < allPage.length; index++) {
          let elem = allPage[index];
          console.log(elem);
-         if (index != (ef)) {
+         if (index !== (ef)) {
             allPageLi[index].style.textDecoration = "none";
             elem.style.width = "0%";
             setTimeout(() => {

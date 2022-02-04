@@ -6,7 +6,7 @@ function checkedBlockModule() {
       dataRevChecked: async (id) => {
          const dataRev = await minGet(URL.API__get__rev + id + '&page=1');
          let m = [];
-         if (dataRev != 0 && dataRev.reviews && dataRev.reviews.length != 0) {
+         if (dataRev !== 0 && dataRev.reviews && dataRev.reviews.length !== 0) {
             for (let index = 0; index < 12; index++) {
                let h42 = dataRev.reviews[index];
                if (dataRev.reviews.length == index) break;
@@ -24,7 +24,7 @@ function checkedBlockModule() {
       dataActorChecked: async (id) => {
          const dataActor = await minGet(URL.API__get__actor + id)
          let k = [];
-         if (dataActor != 0) {
+         if (dataActor !== 0) {
             for (let n = 0; n < 10; n++) {
                if (n == dataActor.length - 1) break;
                let g = dataActor[n].professionText.split('');
@@ -45,7 +45,7 @@ function checkedBlockModule() {
       dataIMGSChecked: async (id) => {
          const dataIMGS = await minGet(URL.API__get__ID__PREV + id + '/frames');
          let Lm = [];
-         if (dataIMGS != 0 && dataIMGS.frames.length != 0) {
+         if (dataIMGS !== 0 && dataIMGS.frames.length !== 0) {
             for (let n = 0; n < 10; n++) {
                if (n == dataIMGS.frames.length - 1) break;
                Lm.push(<div className="des__movie-images">
@@ -58,7 +58,7 @@ function checkedBlockModule() {
       dataFactsChecked: async (id) => {
          const dataFacts = await minGet(URL.API__get__ID + id + '/facts')
          let q = [];
-         if (dataFacts != 0 && dataFacts.total != 0) {
+         if (dataFacts !== 0 && dataFacts.total !== 0) {
             for (let $L = 0; $L < 4; $L++) {
                if ($L == dataFacts.total) break;
                let random42 = Math.floor(Math.random() * dataFacts.total);
@@ -96,7 +96,7 @@ function checkedBlockModule() {
       },
       le: (jk) => {
          let h = '';
-         if (jk != null && jk.split("").length > 300) {
+         if (jk !== null && jk.split("").length > 300) {
             let n = jk.split("");
             for (let index = 0; index < 240; index++) {
                h += n[index];
@@ -114,7 +114,8 @@ function checkedBlockModule() {
          } else {
             if (kl) {
                kl.forEach((el, y) => {
-                  h += `${el.country} ${(y !== (kl.length - 1)) ? "," : " "} `
+                  h += `${el.country} ${(y !== (kl.length - 1)) ? "," : " "
+            } `
                })
             }
             return h;
@@ -123,13 +124,13 @@ function checkedBlockModule() {
       mnts: (kl) => {
          kl = Math.floor(kl);
          if (kl < 60) {
-            return `${kl} Минут`
+            return `${ kl } Минут`
          } else if (kl > 60) {
             let n = 0
             for (; kl > 60; n++) {
                kl -= 60;
             }
-            return `${(n === 1) ? n + " Час" : n + " Часа"} и ${kl} Минут`
+            return `${ (n === 1) ? n + " Час" : n + " Часа" } и ${ kl } Минут`
          } else {
             return `666 минут`
          }

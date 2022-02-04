@@ -21,8 +21,9 @@ const Main = () => {
    function pageL(p) {
       setUrl(defUrl + p)
    }
-   function formSubmit() {
-      if (page != 1) page = 1;
+   function formSubmit(e) {
+      e.preventDefault();
+      if (page !== 1) page = 1;
 
       let h = document.querySelector('#input1');
 
@@ -54,7 +55,9 @@ const Main = () => {
       renderMovies(thisUrl);
    }
 
-   function renderUserMovies() {
+   function renderUserMovies(e) {
+      e.preventDefault()
+      setMouthMenu(prev => !prev)
       page = 1;
       let h = document.querySelector('#input2');
       if (h.value < 2014 || h.value > 2021) h.value = 2015;
@@ -105,12 +108,12 @@ const Main = () => {
                      Найти фильмы по месяцу и году <i className="fa fa-long-arrow-right" aria-hidden="true"></i>
                      <div className="mount__cont2" id="mouths__cont2">
                         <div className="mouths" onClick={() => { setMouthMenu(prev => !prev) }} id='mouths' />
-                        <form action="#" className="form__mounth" onSubmit={() => { renderUserMovies(); setMouthMenu(prev => !prev) }}><input type="text" placeholder="Сюда год"
+                        <form action="#" className="form__mounth" onSubmit={ renderUserMovies}><input type="text" placeholder="Сюда год"
                            className="search__mounth" id="input2" />
                         </form>
                      </div>
                   </div>
-                  <form action="#" className="form1" onSubmit={() => formSubmit()} id='form1'>
+                  <form action="#" className="form1" onSubmit={formSubmit} id='form1'>
                      <input type="text" placeholder="Найти ваш любимый фильм" className="search" id="input1" />
                   </form>
                </nav>
@@ -122,7 +125,7 @@ const Main = () => {
                </div>
                <div className="btns__mov">
                   <button className="button__mov" id="btn-prev__mov"><i className="fa fa-chevron-left"
-                     aria-hidden="true" onClick={() => (page != 1) ? pageL(--page) : ''}></i></button>
+                     aria-hidden="true" onClick={() => (page !== 1) ? pageL(--page) : ''}></i></button>
                   <button className="button__mov" id="btn-next__mov"><i className="fa fa-chevron-right"
                      aria-hidden="true" onClick={() => pageL(++page)}></i></button>
                </div>
