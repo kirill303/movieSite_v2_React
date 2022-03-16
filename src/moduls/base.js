@@ -7,7 +7,7 @@ import URL from './URL/url';
 import css from '../css/style.css';
 
 let page = 1;
-let defUrl = 'https://kinopoiskapiunofficial.tech/api/v2.1/films/releases?year=2021&month=NOVEMBER&page=';
+let defUrl = 'https://kinopoiskapiunofficial.tech/api/v2.1/films/releases?year=2022&month=NOVEMBER&page=';
 const mouthsArr = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
 
 const Main = () => {
@@ -40,7 +40,7 @@ const Main = () => {
       if (movies.hasOwnProperty("releases")) movies.films = movies.releases;
       console.log(movies);
       movies.films.forEach((element, i) => {
-         moviesCont[i] = <MovieBlock el={element} func={renderModul} />
+         moviesCont[i] = <MovieBlock el={element} key = {i} func={renderModul} />
       });
       reactDom.render(moviesCont, document.getElementById('movieBlockCont'));
    }

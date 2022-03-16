@@ -1,7 +1,7 @@
 import reactDom from 'react-dom';
-import minGet from '../API/getId'
 import check from "./checkedModule";
 import URL from "../URL/url";
+import minGet from '../API/getMovie';
 
 async function modulid(e, [close, closeURL]) {
    let data = await minGet(URL.API__get__ID + e.target.id);
@@ -14,7 +14,6 @@ async function modulid(e, [close, closeURL]) {
       switch (ef) {
          case (0):
             if (!rendering[0]) {
-               console.log('3');
                rendering[0] = <ul className="des__ul">
                   <li>Год выхода: {data.year}</li>
                   <li>Страны: {check.kl2(data.countries)}</li>
@@ -29,31 +28,26 @@ async function modulid(e, [close, closeURL]) {
             break;
          case (1):
             if (!rendering[1]) {
-               console.log('3');
-               rendering[1] = await check.dataActorChecked(e.target.id);
+               rendering[1] = await check.actorRender(e.target.id);
             }
             break;
          case (2):
             if (!rendering[2]) {
-               console.log('3');
-               rendering[2] = await check.dataFactsChecked(e.target.id);
+               rendering[2] = await check.factsRender(e.target.id);
             }
             break;
          case (3):
             if (!rendering[3]) {
-               console.log('3');
-               rendering[3] = await check.dataRevChecked(e.target.id);
+               rendering[3] = await check.reviewRender(e.target.id);
             }
             break;
          case (4):
             if (!rendering[4]) {
-               console.log('3');
-               rendering[4] = await check.dataIMGSChecked(e.target.id)
+               rendering[4] = await check.imageRender(e.target.id)
             }
             break;
          case (5):
             if (!rendering[5]) {
-               console.log('3');
                rendering[5] = check.le(data.description)
             }
             break;
@@ -61,7 +55,6 @@ async function modulid(e, [close, closeURL]) {
       reactDom.render(rendering[ef], allPage[ef]);
       for (let index = 0; index < allPage.length; index++) {
          let elem = allPage[index];
-         console.log(elem);
          if (index !== (ef)) {
             allPageLi[index].style.textDecoration = "none";
             elem.style.width = "0%";
@@ -99,7 +92,7 @@ async function modulid(e, [close, closeURL]) {
                   <li id={'event' + kList++} className="des-page__block" onClick={() => setPage(1)}>Актеры</li>
                   <li id={'event' + kList++} className="des-page__block" onClick={() => setPage(2)}>Факты</li>
                   <li id={'event' + kList++} className="des-page__block" onClick={() => setPage(3)}>Отзывы</li>
-                  <li id={'event' + kList++} className="des-page__block" onClick={() => setPage(4)}>Картинки</li>
+                  <li id={'event' + kList++} className="des-page__block" onClick={() => setPage(4)}>Кадры</li>
                   {check.dataMediaIfList(window.screen.width, setPage, 5)}
                </ul>
                <div className="des__top">
